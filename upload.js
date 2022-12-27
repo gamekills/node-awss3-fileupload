@@ -21,9 +21,10 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
   // Set the parameters for the S3 upload
   const params = {
-    Bucket: 'walton-e-app',
+    Bucket: process.env.AWS_S3_BUCKET,
     Key: `uploads/${file.originalname}`,
     Body: file.buffer,
+    //ACL (Access Control List) is a predefined policy in Amazon S3 (Simple Storage Service) that allows any user to read an object in a bucket.
     ACL: 'public-read',
   };
 
